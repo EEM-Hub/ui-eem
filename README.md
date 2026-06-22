@@ -124,6 +124,23 @@ network.json      JSON export of the full network
 
 The pipeline flows from Wikipedia articles through summarization and belief extraction to a queryable knowledge base. Each belief traces back to its source article. Derived beliefs track their justification chains — `reasons explain <id>` shows the full derivation path. The derive-review-repair cycle grew the network from 615 premises to 830 active beliefs across 23 derivation depths.
 
+## Exam Results
+
+50 multiple-choice questions across 10 objectives (design principles, UI components, accessibility, layout, web concepts, dark patterns, design process, design systems, HCI history, performance), tested across 3 models × 3 conditions.
+
+| Model | With Beliefs | Control (no beliefs) | Agentic | Delta |
+|-------|-------------|----------------------|---------|-------|
+| Claude Opus | 50/50 (100%) | 49/50 (98%) | 50/50 (100%) | +2% |
+| Claude Sonnet | 49/50 (98%) | 49/50 (98%) | 50/50 (100%) | +0% |
+| Claude Haiku | 47/50 (94%) | 48/50 (96%) | 46/50 (92%) | -2% |
+
+Key findings:
+- **Opus and Sonnet both achieve 100% in agentic mode** — tool-based belief retrieval gets every question right
+- **Accessibility is where beliefs help most** — both Opus and Sonnet drop from 6/6 to 5/6 without beliefs
+- **Haiku's agentic failures are formatting errors**, not knowledge gaps — it returns raw tool-call JSON instead of answers on 4 questions
+
+Full results in [`results/matrix-summary.md`](results/matrix-summary.md).
+
 ## Belief Network Statistics
 
 | Metric | Value |
